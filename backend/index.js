@@ -20,7 +20,8 @@ const __dirname = path.dirname(__filename);
 
 
 
-const config = require("./config.json");
+import config from "./config.json" assert { type: "json" };
+
 
 const MONGODB_URI = process.env.MONGODB_URI || config.connectionString; // Use env variable if available
 

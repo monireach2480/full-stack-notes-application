@@ -1,19 +1,21 @@
 require("dotenv").config();
 const path = require("path");
+const mongoose = require("mongoose"); // Move this up
+const express = require("express");
+const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const { authenticateToken } = require("./utilities");
 
-// ❌ Remove this line: const __dirname = path.resolve();
+// Remove this line since you're using environment variables
+// const config = require("./config.json");
 
-console.log("Current directory:", __dirname); // ✅ This is fine
-
-const config = require("./config.json");
-const mongoose = require("mongoose");
-mongoose.connect(config.connectionString);
+// Single mongoose connection using environment variable
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 const User = require("./models/user.model");
 const Note = require("./models/note.model");
-
-const express = require("express");
-const cors = require("cors");
 
 const app = express();
 const jwt = require("jsonwebtoken");

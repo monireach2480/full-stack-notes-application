@@ -20,7 +20,11 @@ const __dirname = path.dirname(__filename);
 
 
 
-import config from "./config.json" assert { type: "json" };
+import fs from 'fs';
+
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+console.log(config);
+
 
 
 const MONGODB_URI = process.env.MONGODB_URI || config.connectionString; // Use env variable if available

@@ -3,9 +3,22 @@ require('dotenv').config();
 
 
 
-const config = require("./config.json")
+const config = require("./config.json");
+
+const MONGODB_URI = process.env.MONGODB_URI || config.connectionString; // Use env variable if available
+
+mongoose
+  .connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to MongoDB!"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+
+
 const mongoose = require('mongoose');
-mongoose.connect(config.connectionString);
+
 
 const User = require('./models/user.model');
 const Note = require('./models/note.model');

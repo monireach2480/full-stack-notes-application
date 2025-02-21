@@ -1,5 +1,22 @@
-import path from 'path';
-require('dotenv').config();
+
+import dotenv from "dotenv";
+dotenv.config();
+
+import mongoose from "mongoose";
+import express from "express";
+import cors from "cors";
+import jwt from "jsonwebtoken";
+import path from "path";
+import { fileURLToPath } from "url";
+
+import { authenticateToken } from "./utilities.js";
+import User from "./models/user.model.js";
+import Note from "./models/note.model.js";
+
+// Fix __dirname in ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 
 
@@ -17,19 +34,18 @@ mongoose
 
 
 
-const mongoose = require('mongoose');
 
 
-const User = require('./models/user.model');
-const Note = require('./models/note.model');
-const __dirname = path.resolve();
 
-const express = require('express');
-const cors = require('cors');
+
+
+
+
+
 
 const app = express();
-const jwt = require('jsonwebtoken');
-const { authenticateToken } = require('./utilities');
+
+
 
 app.use(express.json());
 app.use(

@@ -1,25 +1,4 @@
-require("dotenv").config();
-const path = require("path");
-const mongoose = require("mongoose"); // Move this up
-const express = require("express");
-const cors = require("cors");
-const jwt = require("jsonwebtoken");
-const { authenticateToken } = require("./utilities");
 
-// Remove this line since you're using environment variables
-// const config = require("./config.json");
-
-// Single mongoose connection using environment variable
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
-
-const User = require("./models/user.model");
-const Note = require("./models/note.model");
-
-const app = express();
-const jwt = require("jsonwebtoken");
-const { authenticateToken } = require("./utilities");
 
 
 app.use(express.json());

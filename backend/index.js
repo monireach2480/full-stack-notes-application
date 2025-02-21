@@ -1,55 +1,23 @@
+require("dotenv").config();
+const path = require("path");
 
-import dotenv from "dotenv";
-dotenv.config();
+// ❌ Remove this line: const __dirname = path.resolve();
 
-import mongoose from "mongoose";
-import express from "express";
-import cors from "cors";
-import jwt from "jsonwebtoken";
-import path from "path";
-import { fileURLToPath } from "url";
+console.log("Current directory:", __dirname); // ✅ This is fine
 
-import { authenticateToken } from "./utilities.js";
-import User from "./models/user.model.js";
-import Note from "./models/note.model.js";
+const config = require("./config.json");
+const mongoose = require("mongoose");
+mongoose.connect(config.connectionString);
 
-// Fix __dirname in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const User = require("./models/user.model");
+const Note = require("./models/note.model");
 
-
-
-
-import fs from 'fs';
-
-const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
-console.log(config);
-
-
-
-const MONGODB_URI = process.env.MONGODB_URI || config.connectionString; // Use env variable if available
-
-mongoose
-  .connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB!"))
-  .catch((err) => console.error("MongoDB connection error:", err));
-
-
-
-
-
-
-
-
-
-
-
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
-
+const jwt = require("jsonwebtoken");
+const { authenticateToken } = require("./utilities");
 
 
 app.use(express.json());

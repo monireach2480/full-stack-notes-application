@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
@@ -11,5 +11,4 @@ const noteSchema = new Schema({
     createdOn: { type: Date, default: new Date().getTime() },
 });
 
-const Note = mongoose.model("Note", noteSchema);
-export default Note;
+module.exports = mongoose.model("Note", noteSchema);

@@ -1,15 +1,17 @@
-import path from 'path';
+// import path from 'path';
 require('dotenv').config();
 
 
 
 const config = require("./config.json")
 const mongoose = require('mongoose');
-mongoose.connect(config.connectionString);
+mongoose.connect(config.connectionString)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 const User = require('./models/user.model');
 const Note = require('./models/note.model');
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 const express = require('express');
 const cors = require('cors');
@@ -333,12 +335,12 @@ app.get("/search-notes/", authenticateToken, async (req, res) => {
  });
 
 
- if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-    });
- }
+//  if(process.env.NODE_ENV === "production"){
+//     app.use(express.static(path.join(__dirname, "../frontend/dist")));
+//     app.get("*", (req, res) => {
+//         res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+//     });
+//  }
 
 
 app.listen(8000);

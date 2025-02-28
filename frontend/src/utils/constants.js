@@ -1,1 +1,1 @@
-export const BASE_URL = "http://localhost:8000";
+export const BASE_URL = "https://full-stack-notes-application-3.onrender.com/";

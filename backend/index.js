@@ -1,11 +1,12 @@
 // import path from 'path';
 require('dotenv').config();
+// require('DB_URI').env;
 
 
 
 const config = require("./config.json")
 const mongoose = require('mongoose');
-mongoose.connect(config.connectionString)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 

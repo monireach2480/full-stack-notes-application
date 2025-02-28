@@ -1,15 +1,5 @@
-This is the structure of the project.
-
 NOTE-APP/
 ├─ .gitignore
-├─ .idea/
-│ ├─ .gitignore
-│ ├─ inspectionProfiles/
-│ │ └─ Project_Default.xml
-│ ├─ modules.xml
-│ ├─ NOTE-APP.iml
-│ ├─ vcs.xml
-│ └─ workspace.xml
 ├─ backend/
 │ ├─ .env
 │ ├─ config.json
@@ -66,4 +56,4 @@ NOTE-APP/
 │ ├─ tailwind.config.js
 │ └─ vite.config.js
 ├─ package.json
-└─ readme.md
+└─ README.md

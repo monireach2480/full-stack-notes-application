@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://full-stack-notes-application-3.onrender.com/";
+export const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://full-stack-notes-application-3.onrender.com/";
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,

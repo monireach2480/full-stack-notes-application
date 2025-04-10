@@ -1,10 +1,17 @@
 // import path from 'path';
-require('dotenv').config();
+// require('dotenv').config();
 // require('DB_URI').env;
+// require('dotenv').config();
+require('dotenv').config({ path: '../.env' }); 
+const path = require('path');
 
 
 
-const config = require("./config.json")
+if (!process.env.ACCESS_TOKEN_SECRET) {
+    throw new Error("ACCESS_TOKEN_SECRET is missing in .env");
+  }
+
+// const config = require("./config.json")
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
@@ -20,12 +27,14 @@ const cors = require('cors');
 const app = express();
 const jwt = require('jsonwebtoken');
 const { authenticateToken } = require('./utilities');
+const path = require('path');
+
+const __dirname = require('path').resolve();
 
 app.use(express.json());
-app.use(
-    cors({
-        origin: "*",
-    }));
+app.use(cors({
+     origin: process.env.FRONTEND_URL || "http://localhost:5173",
+     credentials: true }));
 app.get('/', (req, res) => {
     res.json({data: 'Hello World!'});
 });
@@ -336,12 +345,12 @@ app.get("/search-notes/", authenticateToken, async (req, res) => {
  });
 
 
-//  if(process.env.NODE_ENV === "production"){
-//     app.use(express.static(path.join(__dirname, "../frontend/dist")));
-//     app.get("*", (req, res) => {
-//         res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-//     });
-//  }
+ if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    });
+ }
 
 
 app.listen(8000);

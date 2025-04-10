@@ -3,7 +3,7 @@
 // require('DB_URI').env;
 // require('dotenv').config();
 require('dotenv').config({ path: '../.env' }); 
-const path = require('path');
+
 
 
 
@@ -29,7 +29,9 @@ const jwt = require('jsonwebtoken');
 const { authenticateToken } = require('./utilities');
 const path = require('path');
 
-const __dirname = require('path').resolve();
+// const __dirname = require('path').resolve();
+const path = require('path'); // Keep only this one
+const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cors({

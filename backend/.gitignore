@@ -15,7 +15,6 @@ dist-ssr
 .env
 .env.local
 .env.production
-config.json
 
 # Editor directories and files
 .vscode/*
@@ -28,4 +27,4 @@ config.json
 *.sln
 *.sw?
 
-
+config.json

@@ -1,17 +1,13 @@
-// import path from 'path';
-// require('dotenv').config();
-// require('DB_URI').env;
-// require('dotenv').config();
-require('dotenv').config({ path: '../.env' }); 
-
-
-
+require('dotenv').config();
 
 if (!process.env.ACCESS_TOKEN_SECRET) {
     throw new Error("ACCESS_TOKEN_SECRET is missing in .env");
-  }
+}
 
-// const config = require("./config.json")
+if (!process.env.MONGODB_URI) {
+    throw new Error("MONGODB_URI is missing in .env");
+}
+
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
@@ -19,19 +15,16 @@ mongoose.connect(process.env.MONGODB_URI)
 
 const User = require('./models/user.model');
 const Note = require('./models/note.model');
-// const __dirname = path.resolve();
 
 const express = require('express');
 const cors = require('cors');
-
-const app = express();
+const path = require('path');
 const jwt = require('jsonwebtoken');
 const { authenticateToken } = require('./utilities');
-const path = require('path');
 
-// const __dirname = require('path').resolve();
-const path = require('path'); // Keep only this one
+const app = express();
 const __dirname = path.resolve();
+const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(cors({
@@ -354,6 +347,8 @@ app.get("/search-notes/", authenticateToken, async (req, res) => {
     });
  }
 
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
-app.listen(8000);
 module.exports = app;

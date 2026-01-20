@@ -23,7 +23,6 @@ const jwt = require('jsonwebtoken');
 const { authenticateToken } = require('./utilities');
 
 const app = express();
-const __dirname = path.resolve();
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());

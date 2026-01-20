@@ -1,7 +1,6 @@
 # Full-Stack Notes Application
 
 
-![Chat App Screenshot](./image.png)
 
 ## Overview
 A full-stack notes application built with the MERN stack, allowing users to securely manage and organize their notes with a seamless experience.

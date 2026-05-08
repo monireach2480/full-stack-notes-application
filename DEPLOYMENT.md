@@ -25,7 +25,7 @@
 3. **Configure Environment Variables** (in Render Dashboard)
    
    **For Backend Service:**
-   - `MONGODB_URI`: `mongodb+srv://lenmonireach123:UkpRoEGqh2S8gqcw@cluster0.q5kop.mongodb.net/notes-app?retryWrites=true&w=majority&appName=Cluster0`
+   - `MONGODB_URI`: `mongodb+srv://lenmonireach123:`
    - `ACCESS_TOKEN_SECRET`: Generate a secure key (min 32 characters)
    - `FRONTEND_URL`: Will be provided after frontend deploys (e.g., `https://notes-app-frontend.onrender.com`)
    - `NODE_ENV`: `production`
